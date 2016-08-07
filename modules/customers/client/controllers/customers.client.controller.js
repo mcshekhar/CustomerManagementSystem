@@ -17,6 +17,14 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+    vm.cancel = cancel;
+
+    // Cancel Customer Editing
+    function cancel() {
+      if (confirm('Are you sure you want to cancel editing?')) {
+        $state.go('customers.list');
+      }
+    }
 
     // Remove existing Customer
     function remove() {
@@ -40,7 +48,7 @@
       }
 
       function successCallback(res) {
-        $state.go('customers.view', {
+        $state.go('customers.list', {
           customerId: res._id
         });
       }

@@ -58,14 +58,14 @@
           customerResolve: getCustomer
         },
         data:{
-          pageTitle: 'Customer {{ articleResolve.name }}'
+          pageTitle: 'Customer {{ customerResolve.firstName }}'
         }
       });
   }
 
   getCustomer.$inject = ['$stateParams', 'CustomersService'];
-
   function getCustomer($stateParams, CustomersService) {
+    console.log($stateParams.customerId);
     return CustomersService.get({
       customerId: $stateParams.customerId
     }).$promise;
