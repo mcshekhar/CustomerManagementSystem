@@ -65,9 +65,10 @@
             </div>
             <div class="form-group" show-errors>
               <label class="control-label" for="channel">Channel</label>
-              <select class="form-control" name="channel" ng-options="channelItem.item for channelItem in vm.channelOptions" ng-model="vm.customer.channel" id="channel">
+              <input name="channel" type="text" ng-model="vm.customer.channel" id="channel" class="form-control">
+              <!--<select class="form-control" name="channel" ng-options="channelItem.item for channelItem in vm.channelOptions" ng-model="vm.customer.channel" id="channel">
                 <option value=''>-- Choose Channel --</option>
-              </select>
+              </select>-->
             </div>
           </div>
         </div>
