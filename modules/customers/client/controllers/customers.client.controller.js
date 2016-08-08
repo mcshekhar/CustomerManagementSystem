@@ -19,6 +19,12 @@
     vm.save = save;
     vm.cancel = cancel;
 
+    vm.channelOptions = [
+      {id:'1', item:'Facebook'},
+      {id:'2', item:'Twitter'},
+      {id:'3', item:'Email'}
+    ];
+
     // Cancel Customer Editing
     function cancel() {
       if (confirm('Are you sure you want to cancel editing?')) {
@@ -57,5 +63,23 @@
         vm.error = res.data.message;
       }
     }
+  }
+
+  // Customers controller
+  angular
+    .module('customers')
+    .directive('customerList', customerList);
+
+  customerList.$inject = [];
+
+  function customerList () {
+    return {
+      restrict: 'E',
+      transclude: true,
+      templateUrl: 'modules/customers/client/views/customer-list-template.client.view.html',
+      link: function(scope, element, attrs){
+
+      }
+    };
   }
 })();

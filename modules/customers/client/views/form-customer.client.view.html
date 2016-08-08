@@ -6,6 +6,9 @@
     <form name="vm.form.customerForm" class="" ng-submit="vm.save(vm.form.customerForm.$valid)" novalidate>
       <fieldset>
         <div class="row">
+          <button type="button" name="button" class="btn btn-primary text-center pull-right" data-ui-sref="customers.list">
+            <i class="glyphicon glyphicon-list-alt"></i>&nbsp;&nbsp;Customers List
+        </button>
           <div class="form-group">
             <div data-ng-show="vm.error" class="text-center text-danger">
               <div class="alert alert-danger" role="alert">
@@ -19,15 +22,24 @@
           <div class="col-sm-6">
             <div class="form-group" show-errors>
               <label class="control-label" for="firstName">First Name</label>
-              <input name="firstName" type="text" ng-model="vm.customer.firstName" id="firstName" class="form-control">
+              <input name="firstName" type="text" ng-model="vm.customer.firstName" id="firstName" class="form-control" required>
+              <div ng-messages="vm.form.customerForm.firstName.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">First name is required.</p>
+              </div>
             </div>
             <div class="form-group" show-errors>
               <label class="control-label" for="surname">Surname</label>
-              <input name="surname" type="text" ng-model="vm.customer.surname" id="surname" class="form-control">
+              <input name="surname" type="text" ng-model="vm.customer.surname" id="surname" class="form-control" required>
+              <div ng-messages="vm.form.customerForm.surname.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Surname is required.</p>
+              </div>
             </div>
             <div class="form-group" show-errors>
               <label class="control-label" for="suburb">Suburb</label>
-              <input name="suburb" type="text" ng-model="vm.customer.suburb" id="suburb" class="form-control">
+              <input name="suburb" type="text" ng-model="vm.customer.suburb" id="suburb" class="form-control" required>
+              <div ng-messages="vm.form.customerForm.suburb.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Suburb is required.</p>
+              </div>
             </div>
             <div class="form-group" show-errors>
               <label class="control-label" for="country">Country</label>
@@ -49,11 +61,13 @@
           <div class="col-sm-6 col-sm-pull-6">
             <div class="form-group" show-errors>
               <label class="control-label" for="referred">Referred</label>
-              <input name="referred" type="checkbox" ng-model="vm.customer.referred" id="referred" class="form-control" style=" width: 10%; text-align: left;">
+              <input name="referred" type="checkbox" ng-model="vm.customer.referred" id="referred" class="form-control" style=" width: 10%; text-align: left;margin: 0px 0 0 !important">
             </div>
             <div class="form-group" show-errors>
               <label class="control-label" for="channel">Channel</label>
-              <input name="channel" type="text" ng-model="vm.customer.channel" id="channel" class="form-control">
+              <select class="form-control" name="channel" ng-options="channelItem.item for channelItem in vm.channelOptions" ng-model="vm.customer.channel" id="channel">
+                <option value=''>-- Choose Channel --</option>
+              </select>
             </div>
           </div>
         </div>
@@ -66,8 +80,9 @@
           </div>
           <div class="col-sm-6">
             <div class="form-group">
-              <button type="submit" class="btn btn-lg btn-success">{{vm.customer._id ? 'Update' : 'Save & Close'}}</button>              
-              <a class="btn btn-lg btn-warning" ng-if="vm.customer._id" ng-click="vm.cancel()">Cancel</a>
+              <button type="submit" class="btn btn-lg btn-success">{{vm.customer._id ? 'Update' : 'Save & Close'}}</button>
+               <a class="btn btn-lg btn-success" ng-if="vm.customer._id" ng-click="vm.cancel()">Cancel</a>
+               <a class="btn btn-lg btn-warning pull-right" ng-if="vm.customer._id" ng-click="vm.remove()"><span><i class="glyphicon glyphicon-trash"></i> Delete</span></a>
             </div>
           </div>
         </div>
